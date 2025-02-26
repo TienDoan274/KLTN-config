@@ -19,13 +19,14 @@ spring:
           predicates:
             - Path=/api/auth/**
           filters:
-            - RewritePath=/api/auth/(?<segment>.*), /api/auth/${segment}
+            - Authentication  
 
         - id: user-service
           uri: lb://user-service
           predicates:
             - Path=/api/users/**
           filters:
+            - Authentication  
             - RewritePath=/api/users/(?<segment>.*), /api/users/${segment}
 
         - id: product-service
@@ -33,6 +34,7 @@ spring:
           predicates:
             - Path=/api/products/**
           filters:
+            - Authentication    # Thêm filter
             - RewritePath=/api/products/(?<segment>.*), /api/products/${segment}
 
         - id: order-service
@@ -40,6 +42,7 @@ spring:
           predicates:
             - Path=/api/orders/**
           filters:
+            - Authentication    # Thêm filter
             - RewritePath=/api/orders/(?<segment>.*), /api/orders/${segment}
 
         - id: inventory-service
@@ -47,6 +50,7 @@ spring:
           predicates:
             - Path=/api/inventory/**
           filters:
+            - Authentication    # Thêm filter
             - RewritePath=/api/inventory/(?<segment>.*), /api/inventory/${segment}
 
 management:
