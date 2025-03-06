@@ -27,7 +27,6 @@ spring:
             - Path=/api/users/**
           filters:
             - Authentication  
-            - RewritePath=/api/users/(?<segment>.*), /api/users/${segment}
 
         - id: product-service
           uri: lb://product-service
@@ -35,7 +34,6 @@ spring:
             - Path=/api/products/**
           filters:
             - Authentication    # Thêm filter
-            - RewritePath=/api/products/(?<segment>.*), /api/products/${segment}
 
         - id: order-service
           uri: lb://order-service
@@ -43,7 +41,6 @@ spring:
             - Path=/api/orders/**
           filters:
             - Authentication    # Thêm filter
-            - RewritePath=/api/orders/(?<segment>.*), /api/orders/${segment}
 
         - id: inventory-service
           uri: lb://inventory-service
@@ -51,7 +48,13 @@ spring:
             - Path=/api/inventory/**
           filters:
             - Authentication    # Thêm filter
-            - RewritePath=/api/inventory/(?<segment>.*), /api/inventory/${segment}
+
+        - id: group-variants-service
+          uri: lb://inventory-service
+          predicates:
+            - Path=/api/group-variants/**
+          filters:
+            - Authentication    # Thêm filter
 
 management:
   endpoints:
