@@ -19,14 +19,14 @@ spring:
           predicates:
             - Path=/api/auth/**
           filters:
-            - Authentication  
+            - Authentication
 
         - id: user-service
           uri: lb://user-service
           predicates:
             - Path=/api/users/**
           filters:
-            - Authentication  
+            - Authentication
 
         - id: product-service
           uri: lb://product-service
@@ -56,19 +56,19 @@ spring:
           filters:
             - Authentication    # Thêm filter
 
-        - id: tags-service
-          uri: lb://inventory-service
+        - id: cart-service
+          uri: lb://cart-service
           predicates:
-            - Path=/api/tags/**
+            - Path=/api/carts/**
           filters:
             - Authentication    # Thêm filter
 
-        - id: group-tags-service
-          uri: lb://inventory-service
+        - id: payment-service
+          uri: lb://payment-service
           predicates:
-            - Path=/api/group-tags/**
+            - Path=/api/payment/**
           filters:
-            - Authentication    # Thêm filter
+            - Authentication
 management:
   endpoints:
     web:
